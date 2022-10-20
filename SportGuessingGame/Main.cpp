@@ -32,7 +32,7 @@ skiingHints[5] = { "It starts with S", "It involves snow", "It is dangerous", "I
 
 void hints(string arr[], int a) {
 	srand(time(NULL));
-	bool check = false, check2 = false, check3 = false;
+	bool check = false, check2 = false;
 	int hintNum[] = { 0, 0, 0, 0, 0 }, randNum;
 	string input, temp, gamesFile = "Games.txt";
 	ifstream inFile;
@@ -49,54 +49,46 @@ void hints(string arr[], int a) {
 	for (int i = 0; i < 5; i++)
 	{
 		randNum = rand() % 5;
-		while (check3 == true) {
-			for (int j = 0; check2 = true;) {
-				for (int i = 0; i < 5; i++)
-				{
-					if (hintNum[i] != NULL) {
-						if (randNum == i) {
-							randNum = rand() % 5;
-							check = true;
-							check2 = true;
-							check3 = true;
-							break;
-						}
-						else if (randNum != i) {
-							check = false;
-							check2 = false;
-							check3 = false;
-						}
+		while (check == true) {
+			for (int i = 0; i < 5; i++)
+			{
+				if (hintNum[i] != NULL) {
+					if (randNum == i) {
+						randNum = rand() % 5;
+						check = true;
+						break;
+					}
+					else if (randNum != i) {
+						check = false;
 					}
 				}
-				break;
 			}
 		}
-		if (check == false) {
-			cout << arr[randNum] << endl;
-			cin >> input;
-			if (input == games[a])
-			{
-				cout << "Correct! Congratulations!" << endl;
-				break;
-			}
-			else if (i < 4)
-			{
-				cout << "Wrong, try again" << endl;
-			}
-			else
-			{
-				cout << "Wrong! The answer was " << games[a] << "!" << endl;
-			}
+		cout << arr[randNum] << endl;
+		cin >> input;
+		if (input == games[a])
+		{
+			cout << "Correct! Congratulations!" << endl;
+			break;
+		}
+		else if (i < 4)
+		{
+			cout << "Wrong, try again" << endl;
+		}
+		else
+		{
+			cout << "Wrong! The answer was " << games[a] << "!" << endl;
 		}
 		if (hintNum[randNum] == 0)
 		{
 			hintNum[randNum] = randNum + 1;
 		}
-		check3 = true;
+		check = true;
 	}
 }
 
 int main() {
+	srand(time(NULL));
 	char repChar;
 	string gamesFile = "Games.txt", temp, input;
 	vector<string> games;
@@ -111,7 +103,6 @@ int main() {
 	}
 	inFile.close();
 	do {
-		srand(time(NULL));
 		int gameSelection = rand() % games.size();
 		cout << "You have 5 guesses to guess a sport from a list of 16 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 		switch (gameSelection) {
