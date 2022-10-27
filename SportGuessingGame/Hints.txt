@@ -38,7 +38,7 @@ It starts with G
 It uses clubs
 It is played on a course
 A famous player is tiger woods
-It is more commonly played by women
+The ball cannot touch the ground
 It involves balls
 It uses a net
 It can be played on sand or hard ground
@@ -78,3 +78,9 @@ It involves snow
 It is dangerous
 It uses mountains
 It has many variations
+It can be played inside or outside
+It involves flying something
+The first word starts with D
+The second word starts with R
+It is a type of racing
+

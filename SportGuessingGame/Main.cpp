@@ -15,8 +15,9 @@
 #include <ctime>
 using namespace std;
 
-vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints, golfHints, volleyballHints,
-badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints;
+vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
+golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
+droneRacingHints;
 
 void hintRead(int a) {
 	int i = 0;
@@ -45,17 +46,18 @@ void hintRead(int a) {
 			else if (i < 70 && i > 64) poolHints.push_back(temp);
 			else if (i < 75 && i > 69) dartsHints.push_back(temp);
 			else if (i < 80 && i > 74) skiingHints.push_back(temp);
+			else if (i < 85 && i > 79) droneRacingHints.push_back(temp);
 			i++;
 		}
 		inFile.close();
 	}
 }
 
-void hints(vector<string> b, int a) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
+void hints(vector<string> a, int b) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
 	srand(time(NULL));
 	bool check = false, check2 = false;
-	int hintNum[] = { 0, 0, 0, 0, 0 }, randNum;
-	string input, temp, gamesFile = "Games.txt";
+	int hintNum[] = { 0, 0, 0, 0, 0 }, randNum, inputLength;
+	string input, temp, answer, gamesFile = "Games.txt";
 	ifstream inFile;
 	vector<string> games;
 	inFile.open(gamesFile);
@@ -81,15 +83,16 @@ void hints(vector<string> b, int a) { //more or less the actual code for the gam
 				}
 			}
 		}
-		cout << b[randNum] << endl;
+		cout << a[randNum] << endl;
 		cin >> input;
-		if (input == games[a])
+		for (int i = 0; i < input.length(); i++) input[i] = tolower(input[i]);
+		if (input == games[b])
 		{
 			cout << "Correct! Congratulations!" << endl;
 			break;
 		}
 		else if (i < 4) cout << "Wrong, try again" << endl;
-		else cout << "Wrong! The answer was " << games[a] << "!" << endl;
+		else cout << "Wrong! The answer was " << games[b] << "!" << endl;
 		if (hintNum[randNum] == 0) hintNum[randNum] = randNum + 1;
 		check = true;
 	}
@@ -160,6 +163,9 @@ int main() {
 			break;
 		case 15:
 			hints(skiingHints, 15);
+			break;
+		case 16:
+			hints(droneRacingHints, 16);
 			break;
 		}
 		do {
