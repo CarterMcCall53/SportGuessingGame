@@ -18,7 +18,7 @@ using namespace std;
 
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
-droneRacingHints;
+cornholeHints, horseshoesHints;
 
 void hintRead(int a) {
 	int i = 0;
@@ -47,7 +47,8 @@ void hintRead(int a) {
 			else if (i < 70 && i > 64) poolHints.push_back(temp);
 			else if (i < 75 && i > 69) dartsHints.push_back(temp);
 			else if (i < 80 && i > 74) skiingHints.push_back(temp);
-			else if (i < 85 && i > 79) droneRacingHints.push_back(temp);
+			else if (i < 85 && i > 79) cornholeHints.push_back(temp);
+			else if (i < 90 && i > 84) horseshoesHints.push_back(temp);
 			i++;
 		}
 		inFile.close();
@@ -113,7 +114,7 @@ int main() {
 		while (inFile >> temp) games.push_back(temp);
 	}
 	inFile.close();
-	cout << "You have 5 guesses to guess a sport from a list of 16 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
+	cout << "You have 5 chances to guess a sport from a list of 18 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
 		switch (gameSelection) {
@@ -166,7 +167,10 @@ int main() {
 			hints(skiingHints, 15);
 			break;
 		case 16:
-			hints(droneRacingHints, 16);
+			hints(cornholeHints, 16);
+			break;
+		case 17:
+			hints(horseshoesHints, 17);
 			break;
 		}
 		do {
