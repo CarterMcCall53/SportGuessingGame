@@ -3,6 +3,8 @@
 *  19 October 2022
 *  Purpose:
 *		Make a game where the user guesses a random sport
+*  Modified 27 October 2022:
+*		Fixed an issue where vectors coudn't read in due to an incorrectly typed operator
 */
 
 #include <iostream>
@@ -13,24 +15,43 @@
 #include <ctime>
 using namespace std;
 
-string baseballHints[5] = { "It starts with B", "It involves balls", "It is played on a 'diamond'", "It involves hitting balls", "One of the positions is 'Pitcher'" },
-basketballHints[5] = { "It starts with B", "It involves balls", "It is played on a 'court'", "It involves baskets", "One of the positions is 'Center'" },
-tennisHints[5] = { "It starts with T", "It involves balls", "It is played on a 'court'", "It involves rackets", "A famous player is Serena Williams" },
-pickleballHints[5] = { "It starts with P", "It involves balls", "It is played on a 'court'", "It involves rackets", "It is similar to table tennis, but bigger" },
-footballHints[5] = { "It starts with F", "It is played on a 'field'", "The ball they use is nicknamed pigskin", "The field is 100 yards long", "One of the positions is called QuarterBack" },
-soccerHints[5] = { "In europe is it called football", "It involves kicking", "It involves nets", "One of the positions is goalie", "It starts with S" },
-hockeyHints[5] = { "It uses pucks", "There are many fights", "It is played on an ice rink", "One of the positions is Goalie", "It starts with H" },
-golfHints[5] = { "It often takes 2-4 hours", "It starts with G", "It uses clubs", "It is played on a course", "A famous player is Tiger Woods" },
-volleyballHints[5] = { "It is more commonly played by Women", "It involves balls", "It uses a net", "It can be played on sand or hard ground", "It starts with V" },
-badmintonHints[5] = { "It starts with B", "It involves a racket", "It uses a net", "It is played on a court", "It uses a birdie" },
-rugbyHints[5] = { "It starts with R", "It is played on a field", "It is full contact", "It uses a ball", "It is very dangerous" },
-boxingHints[5] = { "It starts with B", "It involves a ring", "It involves punching", "It uses gloves", "It is very dangerous" },
-cricketHints[5] = { "It starts with C", "It is similar to Baseball", "It is played on a field", "It involves bats", "The name is also a common insect" },
-poolHints[5] = { "It is played on a table", "It starts with P", "It uses ques", "It uses balls", "It is generally a 2 player game" },
-dartsHints[5] = { "It starts with D", "It involves throwing sharp objects", "It uses a board", "It is generally a 2-8 player game", "It is generally a party game" },
-skiingHints[5] = { "It starts with S", "It involves snow", "It is dangerous", "It uses moutains", "It has many variations" };
+vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints, golfHints, volleyballHints,
+badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints;
 
-void hints(string arr[], int a) {
+void hintRead(int a) {
+	int i = 0;
+	string temp;
+	ifstream inFile;
+	string hintsFile = "Hints.txt";
+	inFile.open(hintsFile);
+	if (!inFile) cout << "Problem reading hints from file"; //checks to see if it can read in a file named Hints.txt
+	else
+	{
+		while (getline(inFile, temp)) //reads in hints from the file until there is nothing else to read in
+		{
+			if (i < 5) baseballHints.push_back(temp);
+			else if (i < 10 && i > 4) basketballHints.push_back(temp);
+			else if (i < 15 && i > 9) tennisHints.push_back(temp);
+			else if (i < 20 && i > 14) pickleballHints.push_back(temp);
+			else if (i < 25 && i > 19) footballHints.push_back(temp);
+			else if (i < 30 && i > 24) soccerHints.push_back(temp);
+			else if (i < 35 && i > 29) hockeyHints.push_back(temp);
+			else if (i < 40 && i > 34) golfHints.push_back(temp);
+			else if (i < 45 && i > 39) volleyballHints.push_back(temp);
+			else if (i < 50 && i > 44) badmintonHints.push_back(temp);
+			else if (i < 55 && i > 49) rugbyHints.push_back(temp);
+			else if (i < 60 && i > 54) boxingHints.push_back(temp);
+			else if (i < 65 && i > 59) cricketHints.push_back(temp);
+			else if (i < 70 && i > 64) poolHints.push_back(temp);
+			else if (i < 75 && i > 69) dartsHints.push_back(temp);
+			else if (i < 80 && i > 74) skiingHints.push_back(temp);
+			i++;
+		}
+		inFile.close();
+	}
+}
+
+void hints(vector<string> b, int a) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
 	srand(time(NULL));
 	bool check = false, check2 = false;
 	int hintNum[] = { 0, 0, 0, 0, 0 }, randNum;
@@ -41,9 +62,7 @@ void hints(string arr[], int a) {
 	if (!inFile) cout << "Problem reading games from file";
 	else
 	{
-		while (inFile >> temp) {
-			games.push_back(temp);
-		}
+		while (inFile >> temp) games.push_back(temp);
 	}
 	inFile.close();
 	for (int i = 0; i < 5; i++)
@@ -58,53 +77,41 @@ void hints(string arr[], int a) {
 						check = true;
 						break;
 					}
-					else if (randNum != i) {
-						check = false;
-					}
+					else if (randNum != i) check = false;
 				}
 			}
 		}
-		cout << arr[randNum] << endl;
+		cout << b[randNum] << endl;
 		cin >> input;
 		if (input == games[a])
 		{
 			cout << "Correct! Congratulations!" << endl;
 			break;
 		}
-		else if (i < 4)
-		{
-			cout << "Wrong, try again" << endl;
-		}
-		else
-		{
-			cout << "Wrong! The answer was " << games[a] << "!" << endl;
-		}
-		if (hintNum[randNum] == 0)
-		{
-			hintNum[randNum] = randNum + 1;
-		}
+		else if (i < 4) cout << "Wrong, try again" << endl;
+		else cout << "Wrong! The answer was " << games[a] << "!" << endl;
+		if (hintNum[randNum] == 0) hintNum[randNum] = randNum + 1;
 		check = true;
 	}
 }
 
 int main() {
 	srand(time(NULL));
-	char repChar;
+	char repChar = 'y';
 	string gamesFile = "Games.txt", temp, input;
 	vector<string> games;
 	ifstream inFile;
+	hintRead(1);
 	inFile.open(gamesFile);
 	if (!inFile) cout << "Problem reading games from file";
 	else
 	{
-		while (inFile >> temp) {
-			games.push_back(temp);
-		}
+		while (inFile >> temp) games.push_back(temp);
 	}
 	inFile.close();
+	cout << "You have 5 guesses to guess a sport from a list of 16 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
-		cout << "You have 5 guesses to guess a sport from a list of 16 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
