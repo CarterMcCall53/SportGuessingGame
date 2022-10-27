@@ -5,6 +5,7 @@
 *		Make a game where the user guesses a random sport
 *  Modified 27 October 2022:
 *		Fixed an issue where vectors coudn't read in due to an incorrectly typed operator
+*		Made the input not caps sensitive and added drone racing as a game
 */
 
 #include <iostream>
