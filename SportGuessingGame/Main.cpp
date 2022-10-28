@@ -18,7 +18,7 @@ using namespace std;
 
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
-cornholeHints, horseshoesHints;
+cornholeHints, horseshoesHints, archeryHints, bowlingHints;
 
 void hintRead(int a) {
 	int i = 0;
@@ -49,10 +49,13 @@ void hintRead(int a) {
 			else if (i < 80 && i > 74) skiingHints.push_back(temp);
 			else if (i < 85 && i > 79) cornholeHints.push_back(temp);
 			else if (i < 90 && i > 84) horseshoesHints.push_back(temp);
+			else if (i < 95 && i > 89) archeryHints.push_back(temp);
+			else if (i < 100 && i > 94) bowlingHints.push_back(temp);
 			i++;
 		}
 		inFile.close();
 	}
+	
 }
 
 void hints(vector<string> a, int b) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
@@ -171,6 +174,12 @@ int main() {
 			break;
 		case 17:
 			hints(horseshoesHints, 17);
+			break;
+		case 18:
+			hints(archeryHints, 18);
+			break;
+		case 19:
+			hints(bowlingHints, 19);
 			break;
 		}
 		do {

@@ -14,8 +14,9 @@ cricket
 pool
 darts
 skiing
-droneㅤracing
 cornhole
 horseshoes
+archery
+bowling
 
 
