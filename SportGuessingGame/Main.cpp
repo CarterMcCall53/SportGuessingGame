@@ -69,10 +69,7 @@ void hints(vector<string> a, int b) { //more or less the actual code for the gam
 	vector<string> games;
 	inFile.open(gamesFile);
 	if (!inFile) cout << "Problem reading games from file";
-	else
-	{
-		while (getline(inFile, temp)) games.push_back(temp);
-	}
+	else while (getline(inFile, temp)) games.push_back(temp);
 	inFile.close();
 	for (int i = 0; i < 5; i++)
 	{
@@ -114,10 +111,7 @@ int main() {
 	hintRead(1);
 	inFile.open(gamesFile);
 	if (!inFile) cout << "Problem reading games from file";
-	else
-	{
-		while (inFile >> temp) games.push_back(temp);
-	}
+	else while (inFile >> temp) games.push_back(temp);
 	inFile.close();
 	cout << "You have 5 chances to guess a sport from a list of 20 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
