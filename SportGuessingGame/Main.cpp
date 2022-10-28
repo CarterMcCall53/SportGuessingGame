@@ -9,7 +9,6 @@
 *  Modified 28 October 2022:
 *		Added archery, bowling, f1, drone racing, and motogp
 *       Made checks to make sure there arent too many or too little hints in the hints file
-*		
 */
 
 #include <iostream>
