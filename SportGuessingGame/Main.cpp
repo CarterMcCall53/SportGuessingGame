@@ -186,7 +186,7 @@ int main() {
 		}
 		do {
 			cout << "Do you want to play again? (Y|N): ";
-			cin >> input;
+			getline(cin, input);
 			repChar = tolower(input[0]);
 		} while (repChar != 'y' && repChar != 'n');
 	} while (repChar == 'y');
