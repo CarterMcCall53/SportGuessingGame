@@ -113,7 +113,7 @@ int main() {
 	if (!inFile) cout << "Problem reading games from file";
 	else while (inFile >> temp) games.push_back(temp);
 	inFile.close();
-	cout << "You have 5 chances to guess a sport from a list of 20 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
+	cout << "You have 5 chances to guess a sport from a list of 22 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
 		switch (gameSelection) {
