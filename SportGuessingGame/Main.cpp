@@ -6,6 +6,10 @@
 *  Modified 27 October 2022:
 *		Fixed an issue where vectors coudn't read in due to an incorrectly typed operator
 *		Made the input not caps sensitive and added drone racing as a game
+*  Modified 28 October 2022:
+*		Added archery, bowling, f1, drone racing, and motogp
+*       Made checks to make sure there arent too many or too little hints in the hints file
+*		
 */
 
 #include <iostream>
@@ -21,7 +25,7 @@ vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, foo
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
 cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, extra;
 
-void hintRead(int a) {
+void hintRead() {
 	int i = 0;
 	ifstream inFile;
 	string temp, hintsFile = "Hints.txt", gamesFile = "Games.txt";
@@ -124,7 +128,7 @@ int main() {
 	string gamesFile = "Games.txt", temp, input;
 	vector<string> games;
 	ifstream inFile;
-	hintRead(1);
+	hintRead();
 	inFile.open(gamesFile);
 	if (!inFile) cout << "Problem reading games from file";
 	else while (getline(inFile, temp)) games.push_back(temp);
@@ -132,7 +136,6 @@ int main() {
 	cout << "You have 5 chances to guess a sport from a list of 23 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
-		//int gameSelection = 22;
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
