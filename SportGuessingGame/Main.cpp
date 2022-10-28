@@ -9,6 +9,8 @@
 *  Modified 28 October 2022:
 *		Added archery, bowling, f1, drone racing, and motogp
 *       Made checks to make sure there arent too many or too little hints in the hints file
+*		Changed line 71 from if (i < 115) to if (i < games.size() * 5) so it doesn't have to be manually updated every time you add more games
+*		Added disc golf and surfing
 */
 
 #include <iostream>
@@ -22,7 +24,7 @@ using namespace std;
 
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
-cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, extra;
+cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, discGolfHints, surfingHints, extra;
 
 void hintRead() {
 	int i = 0;
@@ -62,6 +64,8 @@ void hintRead() {
 			else if (i < 105 && i > 99) f1Hints.push_back(temp);
 			else if (i < 110 && i > 104) droneRacingHints.push_back(temp);
 			else if (i < 115 && i > 109) motogpHints.push_back(temp);
+			else if (i < 120 && i > 114) discGolfHints.push_back(temp);
+			else if (i < 125 && i > 119) surfingHints.push_back(temp);
 			else extra.push_back(temp);
 			i++;
 		}
@@ -135,6 +139,7 @@ int main() {
 	cout << "You have 5 chances to guess a sport from a list of 23 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
+		//int gameSelection = 24; *this line is for hint/game testing use only*
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
@@ -204,6 +209,12 @@ int main() {
 			break;
 		case 22:
 			hints(motogpHints, 22);
+			break;
+		case 23:
+			hints(discGolfHints, 23);
+			break;
+		case 24:
+			hints(surfingHints, 24);
 			break;
 		}
 		do {

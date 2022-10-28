@@ -21,3 +21,5 @@ bowling
 formula one
 drone racing
 motogp
+disc golf
+surfing
