@@ -18,5 +18,7 @@ cornhole
 horseshoes
 archery
 bowling
+formula one
+drone racing
 
 

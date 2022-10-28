@@ -18,7 +18,7 @@ using namespace std;
 
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
-cornholeHints, horseshoesHints, archeryHints, bowlingHints;
+cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints;
 
 void hintRead(int a) {
 	int i = 0;
@@ -51,6 +51,8 @@ void hintRead(int a) {
 			else if (i < 90 && i > 84) horseshoesHints.push_back(temp);
 			else if (i < 95 && i > 89) archeryHints.push_back(temp);
 			else if (i < 100 && i > 94) bowlingHints.push_back(temp);
+			else if (i < 105 && i > 99) f1Hints.push_back(temp);
+			else if (i < 110 && i > 104) droneRacingHints.push_back(temp);
 			i++;
 		}
 		inFile.close();
@@ -69,7 +71,7 @@ void hints(vector<string> a, int b) { //more or less the actual code for the gam
 	if (!inFile) cout << "Problem reading games from file";
 	else
 	{
-		while (inFile >> temp) games.push_back(temp);
+		while (getline(inFile, temp)) games.push_back(temp);
 	}
 	inFile.close();
 	for (int i = 0; i < 5; i++)
@@ -89,7 +91,7 @@ void hints(vector<string> a, int b) { //more or less the actual code for the gam
 			}
 		}
 		cout << a[randNum] << endl;
-		cin >> input;
+		getline(cin, input);
 		for (int i = 0; i < input.length(); i++) input[i] = tolower(input[i]);
 		if (input == games[b])
 		{
@@ -180,6 +182,12 @@ int main() {
 			break;
 		case 19:
 			hints(bowlingHints, 19);
+			break;
+		case 20:
+			hints(f1Hints, 20);
+			break;
+		case 21:
+			hints(droneRacingHints, 21);
 			break;
 		}
 		do {
