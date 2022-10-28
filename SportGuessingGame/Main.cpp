@@ -67,7 +67,7 @@ void hintRead() {
 		}
 		inFile.close();
 	}
-	if (i < 115)
+	if (i < games.size() * 5)
 	{
 		cout << "THERE ARE NOT ENOUGH HINTS IN THE HINTS FILE. PLEASE MAKE SURE YOU HAVE " << games.size() * 5 << " HINTS AND 5 HINTS FOR EACH GAME" << endl;
 		abort();
