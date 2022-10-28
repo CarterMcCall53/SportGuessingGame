@@ -14,17 +14,22 @@
 #include <vector>
 #include <fstream>
 #include <ctime>
+#include <stdlib.h>
 using namespace std;
 
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
-cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints;
+cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, extra;
 
 void hintRead(int a) {
 	int i = 0;
-	string temp;
 	ifstream inFile;
-	string hintsFile = "Hints.txt";
+	string temp, hintsFile = "Hints.txt", gamesFile = "Games.txt";
+	vector<string> games;
+	inFile.open(gamesFile);
+	if (!inFile) cout << "Problem reading games from file";
+	else while (getline(inFile, temp)) games.push_back(temp);
+	inFile.close();
 	inFile.open(hintsFile);
 	if (!inFile) cout << "Problem reading hints from file"; //checks to see if it can read in a file named Hints.txt
 	else
@@ -53,11 +58,22 @@ void hintRead(int a) {
 			else if (i < 100 && i > 94) bowlingHints.push_back(temp);
 			else if (i < 105 && i > 99) f1Hints.push_back(temp);
 			else if (i < 110 && i > 104) droneRacingHints.push_back(temp);
+			else if (i < 115 && i > 109) motogpHints.push_back(temp);
+			else extra.push_back(temp);
 			i++;
 		}
 		inFile.close();
 	}
-	
+	if (i < 115)
+	{
+		cout << "THERE ARE NOT ENOUGH HINTS IN THE HINTS FILE. PLEASE MAKE SURE YOU HAVE " << games.size() * 5 << " HINTS AND 5 HINTS FOR EACH GAME" << endl;
+		abort();
+	}
+	else if (extra.size() != 0) {
+		cout << "THERE ARE EXTRA HINTS IN THE HINT FILE. THE EXTRA HINTS ARE AS FOLLOWS" << endl;
+		for (string nm : extra) cout << nm << endl;
+		abort();
+	}
 }
 
 void hints(vector<string> a, int b) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
@@ -111,11 +127,12 @@ int main() {
 	hintRead(1);
 	inFile.open(gamesFile);
 	if (!inFile) cout << "Problem reading games from file";
-	else while (inFile >> temp) games.push_back(temp);
+	else while (getline(inFile, temp)) games.push_back(temp);
 	inFile.close();
-	cout << "You have 5 chances to guess a sport from a list of 22 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
+	cout << "You have 5 chances to guess a sport from a list of 23 different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
+		//int gameSelection = 22;
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
@@ -182,6 +199,9 @@ int main() {
 			break;
 		case 21:
 			hints(droneRacingHints, 21);
+			break;
+		case 22:
+			hints(motogpHints, 22);
 			break;
 		}
 		do {
