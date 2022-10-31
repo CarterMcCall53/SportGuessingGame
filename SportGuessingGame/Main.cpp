@@ -153,8 +153,8 @@ int main() {
 	inFile.close();
 	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
-		//int gameSelection = rand() % games.size();
-		int gameSelection = 27; //*this line is for hint/game testing use only*
+		int gameSelection = rand() % games.size();
+		//int gameSelection = 27; //*this line is for hint/game testing use only*
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
