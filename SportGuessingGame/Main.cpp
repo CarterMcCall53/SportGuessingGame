@@ -7,7 +7,7 @@
 *		Fixed an issue where vectors coudn't read in due to an incorrectly typed operator
 *		Made the input not caps sensitive and added drone racing as a game
 *  Modified 28 October 2022:
-*		Added archery, bowling, f1, drone racing, and motogp
+*		Added archery, bowling, f1, and motogp
 *       Made checks to make sure there arent too many or too little hints in the hints file
 *		Changed the if statement checking if there are enough hints in the file from i < 115 to i < games.size() * 5 so 
 *  it doesn't have to be manually updated
