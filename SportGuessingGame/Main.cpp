@@ -13,7 +13,8 @@
 *  it doesn't have to be manually updated
 *		Added disc golf and surfing
 *	Modified 31 October 2022:
-*		Added biking
+*		Added biking, ESports, and air racing
+*		Added a guess counter at the end of each round
 */
 
 #include <iostream>
@@ -28,7 +29,7 @@ using namespace std;
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
 cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, discGolfHints, surfingHints,
-bikingHints, extra;
+bikingHints, eSportsHints, airRacingHints, extra;
 
 void hintRead() {
 	int i = 0;
@@ -71,6 +72,8 @@ void hintRead() {
 			else if (i < 120 && i > 114) discGolfHints.push_back(temp);
 			else if (i < 125 && i > 119) surfingHints.push_back(temp);
 			else if (i < 130 && i > 124) bikingHints.push_back(temp);
+			else if (i < 135 && i > 129) eSportsHints.push_back(temp);
+			else if (i < 140 && i > 134) airRacingHints.push_back(temp);
 			else extra.push_back(temp);
 			i++;
 		}
@@ -120,8 +123,15 @@ void hints(vector<string> a, int b) { //more or less the actual code for the gam
 		for (int i = 0; i < input.length(); i++) input[i] = tolower(input[i]);
 		if (input == games[b])
 		{
-			cout << "Correct! Congratulations!" << endl;
-			break;
+			if (i == 0) {
+				cout << "Congratulations! You guessed it in 1 guess!" << endl;
+				break;
+			}
+			else 
+			{
+				cout << "Congratulations! You guessed it in " << i + 1 << " guesses!" << endl;
+				break;
+			}
 		}
 		else if (i < 4) cout << "Wrong, try again" << endl;
 		else cout << "Wrong! The answer was " << games[b] << "!" << endl;
@@ -144,7 +154,7 @@ int main() {
 	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		//int gameSelection = rand() % games.size();
-		int gameSelection = 25; //*this line is for hint/game testing use only*
+		int gameSelection = 27; //*this line is for hint/game testing use only*
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
@@ -223,6 +233,12 @@ int main() {
 			break;
 		case 25:
 			hints(bikingHints, 25);
+			break;
+		case 26:
+			hints(eSportsHints, 26);
+			break;
+		case 27:
+			hints(airRacingHints, 27);
 			break;
 		}
 		do {

@@ -24,3 +24,5 @@ motogp
 disc golf
 surfing
 biking
+esports
+air racing
