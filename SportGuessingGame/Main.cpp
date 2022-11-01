@@ -15,6 +15,8 @@
 *	Modified 31 October 2022:
 *		Added biking, ESports, and air racing
 *		Added a guess counter at the end of each round
+*	Modified 1 November 2022:
+*		Added hint counter for the "not enough hints" check (ln. 87)
 */
 
 #include <iostream>
