@@ -17,6 +17,8 @@
 *		Added a guess counter at the end of each round
 *	Modified 1 November 2022:
 *		Added hint counter for the "not enough hints" check (ln. 87)
+*	Modified 2 November 2022:
+*		Added martial arts
 */
 
 #include <iostream>
@@ -31,7 +33,7 @@ using namespace std;
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
 cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, discGolfHints, surfingHints,
-bikingHints, eSportsHints, airRacingHints, extra;
+bikingHints, eSportsHints, airRacingHints, martialArtsHints, extra;
 
 void hintRead() {
 	int i = 0;
@@ -76,6 +78,7 @@ void hintRead() {
 			else if (i < 130 && i > 124) bikingHints.push_back(temp);
 			else if (i < 135 && i > 129) eSportsHints.push_back(temp);
 			else if (i < 140 && i > 134) airRacingHints.push_back(temp);
+			else if (i < 145 && i > 139) martialArtsHints.push_back(temp);
 			else extra.push_back(temp);
 			i++;
 		}
@@ -157,7 +160,7 @@ int main() {
 	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
-		//int gameSelection = 27; //*this line is for hint/game testing use only*
+		//int gameSelection = 28; //*this line is for hint/game testing use only*
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
@@ -242,6 +245,9 @@ int main() {
 			break;
 		case 27:
 			hints(airRacingHints, 27);
+			break;
+		case 28:
+			hints(martialArtsHints, 28);
 			break;
 		}
 		do {
