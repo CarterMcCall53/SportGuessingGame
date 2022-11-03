@@ -33,7 +33,7 @@ using namespace std;
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
 cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, discGolfHints, surfingHints,
-bikingHints, eSportsHints, airRacingHints, martialArtsHints, extra;
+bikingHints, eSportsHints, airRacingHints, martialArtsHints, wakeBoardingHints, extra;
 
 void hintRead() {
 	int i = 0;
@@ -79,6 +79,7 @@ void hintRead() {
 			else if (i < 135 && i > 129) eSportsHints.push_back(temp);
 			else if (i < 140 && i > 134) airRacingHints.push_back(temp);
 			else if (i < 145 && i > 139) martialArtsHints.push_back(temp);
+			else if (i < 150 && i > 144) wakeBoardingHints.push_back(temp);
 			else extra.push_back(temp);
 			i++;
 		}
@@ -159,8 +160,8 @@ int main() {
 	inFile.close();
 	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
-		int gameSelection = rand() % games.size();
-		//int gameSelection = 28; //*this line is for hint/game testing use only*
+		//int gameSelection = rand() % games.size();
+		int gameSelection = 29; //*this line is for hint/game testing use only*
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
@@ -248,6 +249,9 @@ int main() {
 			break;
 		case 28:
 			hints(martialArtsHints, 28);
+			break;
+		case 29:
+			hints(wakeBoardingHints, 29);
 			break;
 		}
 		do {
