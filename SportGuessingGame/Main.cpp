@@ -19,6 +19,8 @@
 *		Added hint counter for the "not enough hints" check (ln. 87)
 *	Modified 2 November 2022:
 *		Added martial arts
+*	Modified 3 November 2022:
+*		Added wake boarding
 */
 
 #include <iostream>
@@ -160,8 +162,8 @@ int main() {
 	inFile.close();
 	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
-		//int gameSelection = rand() % games.size();
-		int gameSelection = 29; //*this line is for hint/game testing use only*
+		int gameSelection = rand() % games.size();
+		// gameSelection = 29; //*this line is for hint/game testing use only*
 		switch (gameSelection) {
 		case 0:
 			hints(baseballHints, 0);
