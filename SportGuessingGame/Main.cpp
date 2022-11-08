@@ -21,6 +21,8 @@
 *		Added martial arts
 *	Modified 3 November 2022:
 *		Added wake boarding
+*	Modified 7 November
+		Added ability to save average guesses per game for any person
 */
 
 #include <iostream>
