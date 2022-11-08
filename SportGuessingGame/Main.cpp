@@ -21,6 +21,8 @@
 *		Added martial arts
 *	Modified 3 November 2022:
 *		Added wake boarding
+*	Modified 7 November 2022:
+*		Added ability to keep track of average guesses per game
 */
 
 #include <iostream>
@@ -47,7 +49,7 @@ void hintRead() {
 	else while (getline(inFile, temp)) games.push_back(temp);
 	inFile.close();
 	inFile.open(hintsFile);
-	if (!inFile) cout << "Problem reading hints from file"; //checks to see if it can read in a file named Hints.txt
+	if (!inFile) cout << "Problem reading hints from file";
 	else
 	{
 		while (getline(inFile, temp)) //reads in hints from the file until there is nothing else to read in
@@ -87,9 +89,10 @@ void hintRead() {
 		}
 		inFile.close();
 	}
-	if (i < games.size() * 5)
+	if (i < games.size() * 5) //checks too make sure that there are enough hints present in the hints file
 	{
-		cout << "THERE ARE NOT ENOUGH HINTS IN THE HINTS FILE. PLEASE MAKE SURE YOU HAVE " << games.size() * 5 << " HINTS AND 5 HINTS FOR EACH GAME" << endl;
+		cout << "THERE ARE NOT ENOUGH HINTS IN THE HINTS FILE. PLEASE MAKE SURE YOU HAVE "
+			<< games.size() * 5 << " HINTS AND 5 HINTS FOR EACH GAME" << endl;
 		cout << "YOU CURRENTLY HAVE " << i << " HINTS!" << endl;
 		abort();
 	}
@@ -117,7 +120,7 @@ int hints(vector<string> a, int b) { //more or less the actual code for the game
 	for (int i = 0; i < 5; i++)
 	{
 		randNum = rand() % 5;
-		while (check == true) {
+		while (check == true) { //while loop makes sure we don't use a hint thats already been used
 			for (int i = 0; i < 5; i++)
 			{
 				if (hintNum[i] != NULL) {
@@ -130,10 +133,10 @@ int hints(vector<string> a, int b) { //more or less the actual code for the game
 				}
 			}
 		}
-		cout << "\n" << a[randNum] << endl;
+		cout << "\n" << a[randNum] << endl; //prints the hint
 		getline(cin, input);
-		for (int i = 0; i < input.length(); i++) input[i] = tolower(input[i]);
-		if (input == games[b])
+		for (int i = 0; i < input.length(); i++) input[i] = tolower(input[i]); //makes the users input lowercase
+		if (input == games[b]) //prints correct winning statement depending on guess number
 		{
 			if (i == 0) {
 				cout << "\nCongratulations! You guessed it in 1 guess!" << endl;
@@ -146,7 +149,7 @@ int hints(vector<string> a, int b) { //more or less the actual code for the game
 				break;
 			}
 		}
-		else if (i < 4) cout << "\nWrong, try again" << endl;
+		else if (i < 4) cout << "\nWrong, try again" << endl; //prints correct incorrect statement depending on guess number
 		else cout << "\nWrong! The answer was " << games[b] << "!" << endl;
 		if (hintNum[randNum] == 0) hintNum[randNum] = randNum + 1;
 		check = true;
@@ -174,14 +177,15 @@ int main() {
 	guessesFile = username + ".txt";
 	inFile.open(guessesFile);
 	inFile >> numberOfGames >> totalNumberOfGuesses;
-	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
+	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, " <<
+		"you will get a starting hint and a hint each time you get a guess wrong.Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
 		//int gameSelection = 29; //*this line is for hint/game testing use only*
-		switch (gameSelection) {
+		switch (gameSelection) { //uses the random number "game selection" too choose what sport/game the current game will be using
 		case 0:
-			hintReturn = { hints(baseballHints, 0) };
-			totalNumberOfGuesses += hintReturn;
+			hintReturn = { hints(baseballHints, 0) }; //gets the return value and sets hintReturn equal too it
+			totalNumberOfGuesses += hintReturn; //adds hintReturns value to totalNumberOfGuesses
 			break;
 		case 1:
 			hintReturn = { hints(basketballHints, 1) };
@@ -300,8 +304,8 @@ int main() {
 			totalNumberOfGuesses += hintReturn;
 			break;
 		}
-		numberOfGames++;
-		averageNumberOfGuesses = totalNumberOfGuesses / numberOfGames;
+		numberOfGames++; //increments number of games after every game played
+		averageNumberOfGuesses = totalNumberOfGuesses / numberOfGames; //calculates current average number of guesses
 		do {
 			cout << "Do you want to play again? (Y|N): ";
 			getline(cin, input);
@@ -310,7 +314,6 @@ int main() {
 	} while (repChar == 'y');
 	cout << "Your overall average guesses per game is " << averageNumberOfGuesses << "!" << endl;
 	outFile.open(guessesFile);
-	if (outFile) outFile << numberOfGames << " " << totalNumberOfGuesses;
-	else
+	outFile << numberOfGames << " " << totalNumberOfGuesses; //saves numberOfGames and totalNumberOfGuesses to the player file
 	outFile.close();
 }
