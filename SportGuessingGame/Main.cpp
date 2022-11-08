@@ -100,15 +100,18 @@ void hintRead() {
 	}
 }
 
-void hints(vector<string> a, int b) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
+int hints(vector<string> a, int b) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
 	srand(time(NULL));
 	bool check = false, check2 = false;
-	int hintNum[] = { 0, 0, 0, 0, 0 }, randNum, inputLength;
+	int hintNum[] = { 0, 0, 0, 0, 0 }, randNum, inputLength, numberOfGuesses = 0;
 	string input, temp, answer, gamesFile = "Games.txt";
 	ifstream inFile;
 	vector<string> games;
 	inFile.open(gamesFile);
-	if (!inFile) cout << "Problem reading games from file";
+	if (!inFile) {
+		cout << "Problem reading games from file";
+		abort();
+	}
 	else while (getline(inFile, temp)) games.push_back(temp);
 	inFile.close();
 	for (int i = 0; i < 5; i++)
@@ -127,139 +130,187 @@ void hints(vector<string> a, int b) { //more or less the actual code for the gam
 				}
 			}
 		}
-		cout << a[randNum] << endl;
+		cout << "\n" << a[randNum] << endl;
 		getline(cin, input);
 		for (int i = 0; i < input.length(); i++) input[i] = tolower(input[i]);
 		if (input == games[b])
 		{
 			if (i == 0) {
-				cout << "Congratulations! You guessed it in 1 guess!" << endl;
+				cout << "\nCongratulations! You guessed it in 1 guess!" << endl;
 				break;
 			}
 			else 
 			{
-				cout << "Congratulations! You guessed it in " << i + 1 << " guesses!" << endl;
+				cout << "\nCongratulations! You guessed it in " << i + 1 << " guesses!" << endl;
+				numberOfGuesses = i + 1;
 				break;
 			}
 		}
-		else if (i < 4) cout << "Wrong, try again" << endl;
-		else cout << "Wrong! The answer was " << games[b] << "!" << endl;
+		else if (i < 4) cout << "\nWrong, try again" << endl;
+		else cout << "\nWrong! The answer was " << games[b] << "!" << endl;
 		if (hintNum[randNum] == 0) hintNum[randNum] = randNum + 1;
 		check = true;
+		numberOfGuesses = i + 1;
 	}
+	return numberOfGuesses;
 }
 
 int main() {
 	srand(time(NULL));
+	int hintReturn = 0;
 	char repChar = 'y';
-	string gamesFile = "Games.txt", temp, input;
+	double averageNumberOfGuesses = 0, numberOfGames = 0, totalNumberOfGuesses = 0;
+	string gamesFile = "Games.txt", guessesFile, temp, input, username;
 	vector<string> games;
 	ifstream inFile;
+	ofstream outFile;
 	hintRead();
 	inFile.open(gamesFile);
 	if (!inFile) cout << "Problem reading games from file";
 	else while (getline(inFile, temp)) games.push_back(temp);
 	inFile.close();
+	cout << "What is your name? ";
+	getline(cin, username);
+	guessesFile = username + ".txt";
+	inFile.open(guessesFile);
+	inFile >> numberOfGames >> totalNumberOfGuesses;
 	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
 		int gameSelection = rand() % games.size();
-		// gameSelection = 29; //*this line is for hint/game testing use only*
+		//int gameSelection = 29; //*this line is for hint/game testing use only*
 		switch (gameSelection) {
 		case 0:
-			hints(baseballHints, 0);
+			hintReturn = { hints(baseballHints, 0) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 1:
-			hints(basketballHints, 1);
+			hintReturn = { hints(basketballHints, 1) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 2:
-			hints(tennisHints, 2);
+			hintReturn = { hints(tennisHints, 2) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 3:
-			hints(pickleballHints, 3);
+			hintReturn = { hints(pickleballHints, 3) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 4:
-			hints(footballHints, 4);
+			hintReturn = { hints(footballHints, 4) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 5:
-			hints(soccerHints, 5);
+			hintReturn = { hints(soccerHints, 5) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 6:
-			hints(hockeyHints, 6);
+			hintReturn = { hints(hockeyHints, 6) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 7:
-			hints(golfHints, 7);
+			hintReturn = { hints(golfHints, 7)};
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 8:
-			hints(volleyballHints, 8);
+			hintReturn = { hints(volleyballHints, 8) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 9:
-			hints(badmintonHints, 9);
+			hintReturn = { hints(badmintonHints, 9) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 10:
-			hints(rugbyHints, 10);
+			hintReturn = { hints(rugbyHints, 10) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 11:
-			hints(boxingHints, 11);
+			hintReturn = { hints(boxingHints, 11) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 12:
-			hints(cricketHints, 12);
+			hintReturn = { hints(cricketHints, 12) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 13:
-			hints(poolHints, 13);
+			hintReturn = { hints(poolHints, 13) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 14:
-			hints(dartsHints, 14);
+			hintReturn = { hints(dartsHints, 14) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 15:
-			hints(skiingHints, 15);
+			hintReturn = { hints(skiingHints, 15) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 16:
-			hints(cornholeHints, 16);
+			hintReturn = { hints(cornholeHints, 16) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 17:
-			hints(horseshoesHints, 17);
+			hintReturn = { hints(horseshoesHints, 17) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 18:
-			hints(archeryHints, 18);
+			hintReturn = { hints(archeryHints, 18) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 19:
-			hints(bowlingHints, 19);
+			hintReturn = { hints(bowlingHints,19) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 20:
-			hints(f1Hints, 20);
+			hintReturn = { hints(f1Hints, 20) };
+			totalNumberOfGuesses += hintReturn;;
 			break;
 		case 21:
-			hints(droneRacingHints, 21);
+			hintReturn = { hints(droneRacingHints, 21) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 22:
-			hints(motogpHints, 22);
+			hintReturn = { hints(motogpHints, 22) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 23:
-			hints(discGolfHints, 23);
+			hintReturn = { hints(discGolfHints, 23) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 24:
-			hints(surfingHints, 24);
+			hintReturn = { hints(surfingHints, 24) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 25:
-			hints(bikingHints, 25);
+			hintReturn = { hints(bikingHints, 25) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 26:
-			hints(eSportsHints, 26);
+			hintReturn = { hints(eSportsHints, 26) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 27:
-			hints(airRacingHints, 27);
+			hintReturn = { hints(airRacingHints, 27) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 28:
-			hints(martialArtsHints, 28);
+			hintReturn = { hints(martialArtsHints, 28) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		case 29:
-			hints(wakeBoardingHints, 29);
+			hintReturn = { hints(wakeBoardingHints, 29) };
+			totalNumberOfGuesses += hintReturn;
 			break;
 		}
+		numberOfGames++;
+		averageNumberOfGuesses = totalNumberOfGuesses / numberOfGames;
 		do {
 			cout << "Do you want to play again? (Y|N): ";
 			getline(cin, input);
 			repChar = tolower(input[0]);
 		} while (repChar != 'y' && repChar != 'n');
 	} while (repChar == 'y');
+	cout << "Your overall average guesses per game is " << averageNumberOfGuesses << "!" << endl;
+	outFile.open(guessesFile);
+	if (outFile) outFile << numberOfGames << " " << totalNumberOfGuesses;
+	else
+	outFile.close();
 }
