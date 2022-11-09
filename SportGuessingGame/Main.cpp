@@ -61,8 +61,8 @@ int main() {
 		system("cls");
 		cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, " <<
 			"you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
-		int gameSelection = rand() % games.size();
-		//int gameSelection = 29; //*this line is for hint/game testing use only*
+		//int gameSelection = rand() % games.size();
+		int gameSelection = 21; //*this line is for hint/game testing use only*
 		switch (gameSelection) { //uses the random number "game selection" too choose what sport/game the current game will be using
 		case 0:
 			hintReturn = { transfer::hints(baseballHints, 0) }; //gets the return value and sets hintReturn equal too it
