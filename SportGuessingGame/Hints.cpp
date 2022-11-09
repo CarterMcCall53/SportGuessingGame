@@ -62,14 +62,16 @@ void transfer::hintRead() {
 		}
 		inFile.close();
 	}
-	if (i < games.size() * 5) //checks too make sure that there are enough hints present in the hints file
+	//checks too make sure that there are enough hints present in the hints file
+	if (i < games.size() * 5) //Not enough hints check
 	{
 		cout << "THERE ARE NOT ENOUGH HINTS IN THE HINTS FILE. PLEASE MAKE SURE YOU HAVE "
 			<< games.size() * 5 << " HINTS AND 5 HINTS FOR EACH GAME" << endl;
 		cout << "YOU CURRENTLY HAVE " << i << " HINTS!" << endl;
 		abort();
 	}
-	else if (extra.size() != 0) {
+	else if (extra.size() != 0) //Too many hints check
+	{
 		cout << "THERE ARE EXTRA HINTS IN THE HINT FILE. THE EXTRA HINTS ARE AS FOLLOWS" << endl;
 		for (string nm : extra) cout << nm << endl;
 		abort();
@@ -122,7 +124,7 @@ int transfer::hints(vector<string> a, int b) { //more or less the actual code fo
 				break;
 			}
 		}
-		else if (i < 4) cout << "\nWrong, try again" << endl; //prints correct incorrect statement depending on guess number
+		else if (i < 4) cout << "\nWrong, try again" << endl; //prints correct loosing statement depending on guess number
 		else cout << "\nWrong! The answer was " << games[b] << "!" << endl;
 		if (hintNum[randNum] == 0) hintNum[randNum] = randNum + 1;
 		check = true;
