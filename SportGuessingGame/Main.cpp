@@ -39,6 +39,7 @@ int main() {
 	int hintReturn = 0;
 	char repChar = 'y';
 	double averageNumberOfGuesses = 0, numberOfGames = 0, totalNumberOfGuesses = 0;
+	bool clear = false;
 	string gamesFile = "Games.txt", guessesFile, temp, input, username;
 	vector<string> games;
 	ifstream inFile;
@@ -54,8 +55,10 @@ int main() {
 	inFile.open(guessesFile);
 	inFile >> numberOfGames >> totalNumberOfGuesses;
 	cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, " <<
-		"you will get a starting hint and a hint each time you get a guess wrong.Good luck!\n" << endl;
+		"you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
 	do {
+		if(clear == true) system("cls");
+		clear = true;
 		int gameSelection = rand() % games.size();
 		//int gameSelection = 29; //*this line is for hint/game testing use only*
 		switch (gameSelection) { //uses the random number "game selection" too choose what sport/game the current game will be using
