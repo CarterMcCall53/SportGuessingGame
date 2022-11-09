@@ -25,6 +25,8 @@
 *		Added ability to keep track of average guesses per game
 *	Modified 8 November 2022:
 *		Moved hints() and hintRead() functions to a different module 
+*	Modified 9 November 2022:
+*		Added inFile.close()
 */
 
 #include "Main.h"
@@ -54,6 +56,7 @@ int main() {
 	guessesFile = username + ".txt";
 	inFile.open(guessesFile);
 	inFile >> numberOfGames >> totalNumberOfGuesses;
+	inFile.close();
 	do {
 		system("cls");
 		cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, " <<

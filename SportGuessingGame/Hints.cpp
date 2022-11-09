@@ -3,6 +3,8 @@
 *  8 November 2022
 *  Purpose:
 *		Hold the hintRead() and hints() function
+*	Modified 9 November 2022:
+*		Fixed error where hints() wouldn't return a number if you guessed it in 1 guess
 */
 
 #include "Main.h"
@@ -115,6 +117,7 @@ int transfer::hints(vector<string> a, int b) { //more or less the actual code fo
 		{
 			if (i == 0) {
 				cout << "\nCongratulations! You guessed it in 1 guess!" << endl;
+				numberOfGuesses = i + 1;
 				break;
 			}
 			else
