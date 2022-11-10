@@ -8,7 +8,7 @@
 #include <stdlib.h>
 using namespace std;
 
-class transfer {
+class Hints {
 public:
 	static int hints(vector<string> a, int b);
 	static void hintRead();

@@ -7,14 +7,14 @@
 *		Fixed error where hints() wouldn't return a number if you guessed it in 1 guess
 */
 
-#include "Main.h"
+#include "Hints.h"
 
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
 cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, discGolfHints, surfingHints,
 bikingHints, eSportsHints, airRacingHints, martialArtsHints, wakeBoardingHints, extra;
 
-void transfer::hintRead() {
+void Hints::hintRead() {
 	int i = 0;
 	ifstream inFile;
 	string temp, hintsFile = "Hints.txt", gamesFile = "Games.txt";
@@ -80,7 +80,7 @@ void transfer::hintRead() {
 	}
 }
 
-int transfer::hints(vector<string> a, int b) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
+int Hints::hints(vector<string> a, int b) { //more or less the actual code for the game, checking if hints have already been used, using new hints, etc.
 	srand(time(NULL));
 	bool check = false, check2 = false;
 	int hintNum[] = { 0, 0, 0, 0, 0 }, randNum, inputLength, numberOfGuesses = 0;

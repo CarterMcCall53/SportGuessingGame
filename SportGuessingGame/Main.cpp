@@ -29,7 +29,7 @@
 *		Added inFile.close()
 */
 
-#include "Main.h"
+#include "Hints.h"
 
 extern vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
@@ -46,7 +46,7 @@ int main() {
 	vector<string> games;
 	ifstream inFile;
 	ofstream outFile;
-	transfer::hintRead();
+	Hints::hintRead();
 	inFile.open(gamesFile);
 	if (!inFile) cout << "Problem reading games from file";
 	else while (getline(inFile, temp)) games.push_back(temp);
@@ -65,123 +65,123 @@ int main() {
 		//int gameSelection = 21; //*this line is for hint/game testing use only*
 		switch (gameSelection) { //uses the random number "game selection" too choose what sport/game the current game will be using
 		case 0:
-			hintReturn = { transfer::hints(baseballHints, 0) }; //gets the return value and sets hintReturn equal too it
+			hintReturn = { Hints::hints(baseballHints, 0) }; //gets the return value and sets hintReturn equal too it
 			totalNumberOfGuesses += hintReturn; //adds hintReturns value to totalNumberOfGuesses
 			break;
 		case 1:
-			hintReturn = { transfer::hints(basketballHints, 1) };
+			hintReturn = { Hints::hints(basketballHints, 1) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 2:
-			hintReturn = { transfer::hints(tennisHints, 2) };
+			hintReturn = { Hints::hints(tennisHints, 2) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 3:
-			hintReturn = { transfer::hints(pickleballHints, 3) };
+			hintReturn = { Hints::hints(pickleballHints, 3) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 4:
-			hintReturn = { transfer::hints(footballHints, 4) };
+			hintReturn = { Hints::hints(footballHints, 4) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 5:
-			hintReturn = { transfer::hints(soccerHints, 5) };
+			hintReturn = { Hints::hints(soccerHints, 5) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 6:
-			hintReturn = { transfer::hints(hockeyHints, 6) };
+			hintReturn = { Hints::hints(hockeyHints, 6) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 7:
-			hintReturn = { transfer::hints(golfHints, 7)};
+			hintReturn = { Hints::hints(golfHints, 7)};
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 8:
-			hintReturn = { transfer::hints(volleyballHints, 8) };
+			hintReturn = { Hints::hints(volleyballHints, 8) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 9:
-			hintReturn = { transfer::hints(badmintonHints, 9) };
+			hintReturn = { Hints::hints(badmintonHints, 9) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 10:
-			hintReturn = { transfer::hints(rugbyHints, 10) };
+			hintReturn = { Hints::hints(rugbyHints, 10) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 11:
-			hintReturn = { transfer::hints(boxingHints, 11) };
+			hintReturn = { Hints::hints(boxingHints, 11) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 12:
-			hintReturn = { transfer::hints(cricketHints, 12) };
+			hintReturn = { Hints::hints(cricketHints, 12) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 13:
-			hintReturn = { transfer::hints(poolHints, 13) };
+			hintReturn = { Hints::hints(poolHints, 13) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 14:
-			hintReturn = { transfer::hints(dartsHints, 14) };
+			hintReturn = { Hints::hints(dartsHints, 14) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 15:
-			hintReturn = { transfer::hints(skiingHints, 15) };
+			hintReturn = { Hints::hints(skiingHints, 15) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 16:
-			hintReturn = { transfer::hints(cornholeHints, 16) };
+			hintReturn = { Hints::hints(cornholeHints, 16) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 17:
-			hintReturn = { transfer::hints(horseshoesHints, 17) };
+			hintReturn = { Hints::hints(horseshoesHints, 17) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 18:
-			hintReturn = { transfer::hints(archeryHints, 18) };
+			hintReturn = { Hints::hints(archeryHints, 18) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 19:
-			hintReturn = { transfer::hints(bowlingHints,19) };
+			hintReturn = { Hints::hints(bowlingHints,19) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 20:
-			hintReturn = { transfer::hints(f1Hints, 20) };
+			hintReturn = { Hints::hints(f1Hints, 20) };
 			totalNumberOfGuesses += hintReturn;;
 			break;
 		case 21:
-			hintReturn = { transfer::hints(droneRacingHints, 21) };
+			hintReturn = { Hints::hints(droneRacingHints, 21) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 22:
-			hintReturn = { transfer::hints(motogpHints, 22) };
+			hintReturn = { Hints::hints(motogpHints, 22) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 23:
-			hintReturn = { transfer::hints(discGolfHints, 23) };
+			hintReturn = { Hints::hints(discGolfHints, 23) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 24:
-			hintReturn = { transfer::hints(surfingHints, 24) };
+			hintReturn = { Hints::hints(surfingHints, 24) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 25:
-			hintReturn = { transfer::hints(bikingHints, 25) };
+			hintReturn = { Hints::hints(bikingHints, 25) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 26:
-			hintReturn = { transfer::hints(eSportsHints, 26) };
+			hintReturn = { Hints::hints(eSportsHints, 26) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 27:
-			hintReturn = { transfer::hints(airRacingHints, 27) };
+			hintReturn = { Hints::hints(airRacingHints, 27) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 28:
-			hintReturn = { transfer::hints(martialArtsHints, 28) };
+			hintReturn = { Hints::hints(martialArtsHints, 28) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		case 29:
-			hintReturn = { transfer::hints(wakeBoardingHints, 29) };
+			hintReturn = { Hints::hints(wakeBoardingHints, 29) };
 			totalNumberOfGuesses += hintReturn;
 			break;
 		}
