@@ -5,6 +5,8 @@
 *		Hold the hintRead() and hints() function
 *	Modified 9 November 2022:
 *		Fixed error where hints() wouldn't return a number if you guessed it in 1 guess
+*	Modified 10 November 2022:
+*		Added tiddlywinks
 */
 
 #include "Hints.h"
