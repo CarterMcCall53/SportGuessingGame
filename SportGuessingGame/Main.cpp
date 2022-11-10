@@ -27,8 +27,6 @@
 *		Moved hints() and hintRead() functions to a different module 
 *	Modified 9 November 2022:
 *		Added inFile.close()
-*	Modified 10 November 2022:
-*		Changed name of Hints class (previously transfer) and Hints.h (previously Main.h)
 */
 
 #include "Hints.h"
@@ -36,7 +34,7 @@
 extern vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
 cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, discGolfHints, surfingHints,
-bikingHints, eSportsHints, airRacingHints, martialArtsHints, wakeBoardingHints, extra;
+bikingHints, eSportsHints, airRacingHints, martialArtsHints, wakeBoardingHints, tiddlywinksHints, extra;
 
 int main() {
 	srand(time(NULL));
@@ -63,8 +61,8 @@ int main() {
 		system("cls");
 		cout << "You have 5 chances to guess a sport from a list of " << games.size() << " different sports, " <<
 			"you will get a starting hint and a hint each time you get a guess wrong. Good luck!\n" << endl;
-		int gameSelection = rand() % games.size();
-		//int gameSelection = 21; //*this line is for hint/game testing use only*
+		//int gameSelection = rand() % games.size();
+		int gameSelection = 30; //*this line is for hint/game testing use only*
 		switch (gameSelection) { //uses the random number "game selection" too choose what sport/game the current game will be using
 		case 0:
 			hintReturn = { Hints::hints(baseballHints, 0) }; //gets the return value and sets hintReturn equal too it
@@ -186,6 +184,9 @@ int main() {
 			hintReturn = { Hints::hints(wakeBoardingHints, 29) };
 			totalNumberOfGuesses += hintReturn;
 			break;
+		case 30:
+			hintReturn = { Hints::hints(tiddlywinksHints, 30) };
+			totalNumberOfGuesses += hintReturn;
 		}
 		numberOfGames++; //increments number of games after every game played
 		averageNumberOfGuesses = totalNumberOfGuesses / numberOfGames; //calculates current average number of guesses

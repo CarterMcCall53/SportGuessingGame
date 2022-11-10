@@ -12,7 +12,7 @@
 vector<string> baseballHints, basketballHints, tennisHints, pickleballHints, footballHints, soccerHints, hockeyHints,
 golfHints, volleyballHints, badmintonHints, rugbyHints, boxingHints, cricketHints, poolHints, dartsHints, skiingHints,
 cornholeHints, horseshoesHints, archeryHints, bowlingHints, f1Hints, droneRacingHints, motogpHints, discGolfHints, surfingHints,
-bikingHints, eSportsHints, airRacingHints, martialArtsHints, wakeBoardingHints, extra;
+bikingHints, eSportsHints, airRacingHints, martialArtsHints, wakeBoardingHints, tiddlywinksHints, extra;
 
 void Hints::hintRead() {
 	int i = 0;
@@ -59,6 +59,7 @@ void Hints::hintRead() {
 			else if (i < 140 && i > 134) airRacingHints.push_back(temp);
 			else if (i < 145 && i > 139) martialArtsHints.push_back(temp);
 			else if (i < 150 && i > 144) wakeBoardingHints.push_back(temp);
+			else if (i < 155 && i > 149) tiddlywinksHints.push_back(temp);
 			else extra.push_back(temp);
 			i++;
 		}
