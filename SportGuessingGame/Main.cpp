@@ -27,6 +27,8 @@
 *		Moved hints() and hintRead() functions to a different module 
 *	Modified 9 November 2022:
 *		Added inFile.close()
+*	Modified 10 November 2022:
+*		Changed name of Hints class (previously transfer) and Hints.h (previously Main.h)
 */
 
 #include "Hints.h"
