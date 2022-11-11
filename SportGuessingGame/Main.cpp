@@ -50,7 +50,10 @@ int main() {
 	ofstream outFile;
 	Hints::hintRead();
 	inFile.open(gamesFile);
-	if (!inFile) cout << "Problem reading games from file";
+	if (!inFile) {
+		cout << "Problem reading games from file (Error Function: main())";
+		abort();
+	}
 	else while (getline(inFile, temp)) games.push_back(temp);
 	inFile.close();
 	cout << "What is your name? ";

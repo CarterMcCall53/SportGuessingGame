@@ -22,11 +22,17 @@ void Hints::hintRead() {
 	string temp, hintsFile = "Hints.txt", gamesFile = "Games.txt";
 	vector<string> games;
 	inFile.open(gamesFile);
-	if (!inFile) cout << "Problem reading games from file";
+	if (!inFile) {
+		cout << "Problem reading games from file (Error Function: hintRead())";
+		abort();
+	}
 	else while (getline(inFile, temp)) games.push_back(temp);
 	inFile.close();
 	inFile.open(hintsFile);
-	if (!inFile) cout << "Problem reading hints from file";
+	if (!inFile) {
+		cout << "Problem reading hints from file (Error Functino: hintRead())";
+		abort();
+	}
 	else
 	{
 		while (getline(inFile, temp)) //reads in hints from the file until there is nothing else to read in
@@ -92,7 +98,7 @@ int Hints::hints(vector<string> a, int b) { //more or less the actual code for t
 	vector<string> games;
 	inFile.open(gamesFile);
 	if (!inFile) {
-		cout << "Problem reading games from file";
+		cout << "Problem reading games from file (Error Function: hints())";
 		abort();
 	}
 	else while (getline(inFile, temp)) games.push_back(temp);
